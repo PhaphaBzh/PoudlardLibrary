@@ -1,0 +1,78 @@
+{% extends "base.html.twig" %}
+{% block title %}Liste des livres
+{% endblock %}
+
+{% block contenu %}
+{% if message|length >0 %}
+    <div class="alert alert-{{message.type}}" role="alert">
+        {{message.content | e}}
+    </div>
+{% endif %}
+
+<div class="table-responsive booksTable">
+    <table class="table text-center myTable" id="booksTable">
+        <thead>
+            <tr class="table-dark" id="columnTitles">
+                <th>Couverture</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Nombre de pages</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in listOfBooks %}
+            <tr>
+                <td><img src="images/{{book.image | e}}" width="60px" alt="image de couverture"></td>
+                <td>
+                    <a href="/livres/{{book._id | e}}">{{book.title | e}}</a>
+                </td>
+                <td><a href="/auteurs/{{book.author._id | e}}">{{book.author.firstName | e}} {{book.author.lastName | e}}</a></td>
+                <td>{{book.nbOfPages | e}}</td>
+                <td>
+                    <a href="/livres/modification/{{book._id | e}}" class="btn btn-warning">Modifier</a>
+                </td>
+                <td>
+                    <form action="/livres/delete/{{book._id | e}}" method="post" onsubmit="return confirm ('Voulez-vous vraiment supprimer le livre ?')">
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<button class="btn btn-success w-100" onclick="displayAddABook()">Ajouter</button>
+<form id="newBookForm" class="d-none" method="POST" action="" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Ajout d'un livre</legend>
+        <div class="form-group">
+            <label for="bookTitle">Titre</label>
+            <input type="text" class="form-control" id="bookTitle" name="title">
+        </div>
+        <div class="form-group">
+            <label for="bookAuthor">Auteur</label>
+            <select class="form-control" id="bookAuthor" name="author">
+                {% for author in listOfAuthors %}
+                    <option value="{{author._id | e}}">{{author.firstName | e}} {{author.lastName | e}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="bookNumberOfPages">Nombre de pages</label>
+            <input type="number" class="form-control" id="bookNumberOfPages" name="nbOfPages">
+        </div>
+        <div class="form-group">
+            <label for="bookDescription">Description</label>
+            <textarea class="form-control" id="bookDescription" name="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="bookImage">Image</label>
+            <input type="file" class="form-control-file" id="bookImage" name="bookImage">
+        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </fieldset>
+</form>
+
+<script src="/javascript/addBook.js"></script>
+{% endblock %}

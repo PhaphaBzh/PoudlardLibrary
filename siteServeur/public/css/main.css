@@ -1,0 +1,67 @@
+:root {
+    --font-size-h1: 1.2rem;
+    --font-size-h2: 1rem;
+    --font-size-table: 0.875rem;
+    --padding-table: 0.5rem;
+    --padding-btn: 0.25rem 0.5rem;
+    --font-size-btn: 0.75rem;
+}
+
+.p_bgColorBlue {
+    background-color: rgb(103, 172, 218);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Sigmar One", sans-serif;
+}
+
+@media (max-width: 767px) {
+    h1 {
+        font-size: var(--font-size-h1);
+    }
+
+    h2 {
+        font-size: var(--font-size-h2);
+    }
+
+    /* Adjust list of books and list of authors*/
+    .table-responsive.booksTable th:nth-child(1),
+    .table-responsive.booksTable td:nth-child(1),
+    .table-responsive.booksTable th:nth-child(3),
+    .table-responsive.booksTable td:nth-child(3),
+    .table-responsive.booksTable th:nth-child(4),
+    .table-responsive.booksTable td:nth-child(4),
+    .table-responsive.authorsTable th:nth-child(3),
+    .table-responsive.authorsTable td:nth-child(3) {
+        display: none;
+    }
+
+    .table-responsive.booksTable th,
+    .table-responsive.booksTable td,
+    .table-responsive.authorsTable th,
+    .table-responsive.authorsTable td {
+        font-size: var(--font-size-table);
+        padding: var(--padding-table);
+    }
+
+    .table-responsive.booksTable .btn,
+    .table-responsive.authorsTable .btn {
+        padding: var(--padding-btn);
+        font-size: var(--font-size-btn);
+    }
+
+    /*Book details and author details*/
+    .bookDetails img,
+    .authorDetails img {
+        display: none;
+    }
+
+    .authorDetails .col-8 {
+        width: 100%;
+    }
+}

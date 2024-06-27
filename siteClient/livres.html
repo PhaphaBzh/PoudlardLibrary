@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
+    <title>Bienvenue ô toi libraire</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">@monSite</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="livres.html">Livres</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="border border-dark m-2 p-2 rounded text-center p_bgColorBlue text-white">Liste des livres en
+            catalogue
+        </h1>
+        <div>
+            <table class="table text-center myTable" id="booksTable">
+                <thead>
+                    <tr class="table-dark" id="columnTitles">
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Nombre de pages</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <button onclick="displayAddABook()" class="btn btn-success w-100">Ajouter</button>
+        </div>
+        <form id="newBookForm" class="d-none">
+            <fieldset>
+                <legend>Ajout d'un livre</legend>
+                <div class="form-group">
+                    <label for="bookTitle">Titre</label>
+                    <input type="text" class="form-control" id="bookTitle">
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">Auteur</label>
+                    <input type="text" class="form-control" id="bookAuthor">
+                </div>
+                <div class="form-group">
+                    <label for="bookNumberOfPages">Nombre de pages</label>
+                    <input type="text" class="form-control" id="bookNumberOfPages">
+                </div>
+                <button class="btn btn-primary" id="validationNewBookForm">Valider</button>
+            </fieldset>
+        </form>
+        <form id="updateBookForm" class="d-none">
+            <fieldset>
+                <legend>Modification d'un livre</legend>
+                <div class="form-group">
+                    <label for="bookTitle">Titre</label>
+                    <input type="text" class="form-control" id="bookTitle">
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">Auteur</label>
+                    <input type="text" class="form-control" id="bookAuthor">
+                </div>
+                <div class="form-group">
+                    <label for="bookNumberOfPages">Nombre de pages</label>
+                    <input type="text" class="form-control" id="bookNumberOfPages">
+                </div>
+                <input type="hidden" id="bookToUpdate" value="">
+                <button class="btn btn-primary" id="confirmationUpdateBookForm">Valider</button>
+            </fieldset>
+        </form>
+    </div>
+    <script src="javascript/main.js"></script>
+
+</body>
+
+</html>

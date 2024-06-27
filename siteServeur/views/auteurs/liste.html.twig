@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste de nos talentueux auteurs
+{% endblock %}
+
+{% block contenu %}
+{% if message|length >0 %}
+    <div class="alert alert-{{message.type}}" role="alert">
+        {{message.content}}
+    </div>
+{% endif %}
+<div class="table-responsive authorsTable">
+    <table class="table text-center myTable" id="authorsTable">
+        <thead>
+            <tr class="table-dark" id="columnTitles">
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Nombre de livres</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td class="align-middle"><a href="/auteurs/{{author._id}}">{{author.firstName | e}}</a></td>
+                <td class="align-middle">{{author.lastName | e}}</td>
+                <td class="align-middle">{{author.books|length}}</td>
+                <td>
+                    <a href="/auteurs/modification/{{author._id}}" class="btn btn-warning">Modifier</a>
+                </td>
+                <td>
+                    <form action="/auteurs/delete/{{author._id}}" method="post" onsubmit="return confirm ('Voulez-vous vraiment supprimer cet(te) auteur(e) ?')">
+                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<button class="btn btn-success w-100" onclick="displayAddAnAuthor()">Ajouter</button>
+<form id="newAuthorForm" class="d-none" method="POST" action="">
+    <fieldset>
+        <legend>Ajout d'un(e) auteur(e)</legend>
+        <div class="form-group">
+            <label for="bookTitle">Nom</label>
+            <input type="text" class="form-control" id="authorLastName" name="lastName">
+        </div>
+        <div class="form-group">
+            <label for="bookAuthor">Prénom</label>
+            <input type="text" class="form-control" id="authorFirstName" name="firstName">
+        </div>
+        <div class="form-group">
+            <label for="bookNumberOfPages">Age</label>
+            <input type="number" class="form-control" id="authorAge" name="age">
+        </div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </fieldset>
+</form>
+
+<script src="/javascript/addAuthor.js"></script>
+{% endblock %}
